@@ -10,15 +10,16 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Sets up the Express app to handle data parsing
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.text());
 
 //points the server to a series of route files 
-require("./app/routing/apiRoutes")(app)
-require("./app/routing/htmlRoutes")(app)
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
 //app listener that starts the server
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
-  });
+});
 
